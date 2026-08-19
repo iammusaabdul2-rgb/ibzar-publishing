@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ibzar Publishing</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f4f6f8;
+      color: #1f2937;
+    }
+
+    .header {
+      background: #111827;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: 24px;
+      margin-bottom: 5px;
+    }
+
+    .header p {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 20px;
+    }
+
+    .welcome {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .welcome h2 {
+      margin-bottom: 10px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+    }
+
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .card h3 {
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      color: #6b7280;
+      font-size: 14px;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 30px;
+      color: #6b7280;
+      font-size: 13px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="header">
+    <h1>Ibzar Publishing</h1>
+    <p>Company Management System</p>
+  </header>
+
+  <main class="container">
+
+    <section class="welcome">
+      <h2>Welcome to Ibzar Publishing</h2>
+      <p>
+        This system will help manage customers, jobs, payments,
+        staff and company reports.
+      </p>
+    </section>
+
+    <section class="cards">
+
+      <div class="card">
+        <h3>Customers</h3>
+        <p>Manage publishing customers</p>
+      </div>
+
+      <div class="card">
+        <h3>Jobs</h3>
+        <p>Create and manage jobs</p>
+      </div>
+
+      <div class="card">
+        <h3>Payments</h3>
+        <p>Track customer payments</p>
+      </div>
+
+      <div class="card">
+        <h3>Reports</h3>
+        <p>View business reports</p>
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    Ibzar Publishing © 2026
+  </footer>
+
+</body>
+</html>
