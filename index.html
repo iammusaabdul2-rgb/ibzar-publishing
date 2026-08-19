@@ -1,136 +1,1724 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ibzar Publishing</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ibzar Publishing Company Management System</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f4f6f8;
+    color: #1f2937;
+}
+
+button {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* LOGIN */
+
+#loginPage {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: #f4f6f8;
+}
+
+.login-box {
+    width: 100%;
+    max-width: 420px;
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.logo h1 {
+    color: #166534;
+    margin-bottom: 8px;
+}
+
+.logo p {
+    color: #6b7280;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 7px;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+.primary-btn {
+    width: 100%;
+    border: none;
+    background: #166534;
+    color: white;
+    padding: 13px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.primary-btn:hover {
+    background: #14532d;
+}
+
+.demo-note {
+    margin-top: 15px;
+    padding: 12px;
+    background: #f0fdf4;
+    border-radius: 8px;
+    color: #166534;
+    font-size: 13px;
+}
+
+/* APP */
+
+#app {
+    min-height: 100vh;
+}
+
+.topbar {
+    height: 65px;
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.topbar-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #166534;
+}
+
+.user-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logout-btn {
+    border: none;
+    background: #fee2e2;
+    color: #991b1b;
+    padding: 9px 13px;
+    border-radius: 7px;
+}
+
+.layout {
+    display: flex;
+    min-height: calc(100vh - 65px);
+}
+
+.sidebar {
+    width: 230px;
+    background: #14532d;
+    color: white;
+    padding: 20px 12px;
+}
+
+.nav-btn {
+    width: 100%;
+    text-align: left;
+    border: none;
+    background: transparent;
+    color: white;
+    padding: 13px 14px;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    font-size: 15px;
+}
+
+.nav-btn:hover,
+.nav-btn.active {
+    background: #166534;
+}
+
+.main {
+    flex: 1;
+    padding: 25px;
+    overflow-x: auto;
+}
+
+.page-title {
+    margin-bottom: 20px;
+}
+
+.page-title h2 {
+    margin-bottom: 5px;
+}
+
+.page-title p {
+    color: #6b7280;
+}
+
+/* CARDS */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 25px;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.stat-card .label {
+    color: #6b7280;
+    font-size: 14px;
+}
+
+.stat-card .number {
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: 8px;
+    color: #166534;
+}
+
+/* CONTENT */
+
+.content-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+    gap: 10px;
+}
+
+.action-btn {
+    border: none;
+    background: #166534;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 7px;
+}
+
+.table-wrap {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    text-align: left;
+    padding: 12px;
+    border-bottom: 1px solid #e5e7eb;
+    white-space: nowrap;
+}
+
+th {
+    background: #f9fafb;
+    font-size: 13px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 5px 9px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.badge-green {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.badge-yellow {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.badge-red {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.empty {
+    text-align: center;
+    color: #6b7280;
+    padding: 30px;
+}
+
+/* MODAL */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 50;
+}
+
+.modal-box {
+    background: white;
+    width: 100%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 25px;
+    border-radius: 14px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.close-btn {
+    border: none;
+    background: #f3f4f6;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.form-actions button {
+    flex: 1;
+}
+
+/* MOBILE */
+
+.mobile-menu {
+    display: none;
+    border: none;
+    background: #f3f4f6;
+    padding: 8px 11px;
+    border-radius: 7px;
+    font-size: 20px;
+}
+
+@media (max-width: 900px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    body {
-      background: #f4f6f8;
-      color: #1f2937;
+    .sidebar {
+        width: 200px;
+    }
+}
+
+@media (max-width: 700px) {
+    .topbar {
+        padding: 0 12px;
     }
 
-    .header {
-      background: #111827;
-      color: white;
-      padding: 20px;
-      text-align: center;
+    .mobile-menu {
+        display: block;
     }
 
-    .header h1 {
-      font-size: 24px;
-      margin-bottom: 5px;
+    .layout {
+        position: relative;
     }
 
-    .header p {
-      font-size: 14px;
-      opacity: 0.8;
+    .sidebar {
+        position: fixed;
+        left: -240px;
+        top: 65px;
+        bottom: 0;
+        width: 230px;
+        z-index: 20;
+        transition: left 0.2s;
     }
 
-    .container {
-      max-width: 1000px;
-      margin: 30px auto;
-      padding: 20px;
+    .sidebar.open {
+        left: 0;
     }
 
-    .welcome {
-      background: white;
-      padding: 25px;
-      border-radius: 12px;
-      margin-bottom: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    .main {
+        padding: 15px;
+        width: 100%;
     }
 
-    .welcome h2 {
-      margin-bottom: 10px;
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
     }
 
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 15px;
+    .stat-card {
+        padding: 15px;
     }
 
-    .card {
-      background: white;
-      padding: 25px;
-      border-radius: 12px;
-      text-align: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    .stat-card .number {
+        font-size: 23px;
     }
 
-    .card h3 {
-      margin-bottom: 8px;
+    .topbar-title {
+        font-size: 16px;
     }
 
-    .card p {
-      color: #6b7280;
-      font-size: 14px;
+    .user-area span {
+        display: none;
     }
-
-    .footer {
-      text-align: center;
-      padding: 30px;
-      color: #6b7280;
-      font-size: 13px;
-    }
-  </style>
+}
+</style>
 </head>
 
 <body>
 
-  <header class="header">
-    <h1>Ibzar Publishing</h1>
-    <p>Company Management System</p>
-  </header>
+<!-- LOGIN PAGE -->
 
-  <main class="container">
+<section id="loginPage">
 
-    <section class="welcome">
-      <h2>Welcome to Ibzar Publishing</h2>
-      <p>
-        This system will help manage customers, jobs, payments,
-        staff and company reports.
-      </p>
-    </section>
+    <div class="login-box">
 
-    <section class="cards">
+        <div class="logo">
+            <h1>Ibzar Publishing</h1>
+            <p>Company Management System</p>
+        </div>
 
-      <div class="card">
-        <h3>Customers</h3>
-        <p>Manage publishing customers</p>
-      </div>
+        <div class="form-group">
+            <label>Username</label>
+            <input id="username" type="text" placeholder="Enter username">
+        </div>
 
-      <div class="card">
-        <h3>Jobs</h3>
-        <p>Create and manage jobs</p>
-      </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input id="password" type="password" placeholder="Enter password">
+        </div>
 
-      <div class="card">
-        <h3>Payments</h3>
-        <p>Track customer payments</p>
-      </div>
+        <button class="primary-btn" onclick="login()">
+            Login
+        </button>
 
-      <div class="card">
-        <h3>Reports</h3>
-        <p>View business reports</p>
-      </div>
+        <div class="demo-note">
+            <strong>Demo login</strong><br>
+            Username: admin<br>
+            Password: 1234
+        </div>
 
-    </section>
+    </div>
 
-  </main>
+</section>
 
-  <footer class="footer">
-    Ibzar Publishing © 2026
-  </footer>
+
+<!-- APPLICATION -->
+
+<section id="app" class="hidden">
+
+    <header class="topbar">
+
+        <div style="display:flex;align-items:center;gap:10px;">
+
+            <button class="mobile-menu" onclick="toggleSidebar()">
+                ☰
+            </button>
+
+            <div class="topbar-title">
+                Ibzar Publishing
+            </div>
+
+        </div>
+
+        <div class="user-area">
+            <span>Administrator</span>
+            <button class="logout-btn" onclick="logout()">
+                Logout
+            </button>
+        </div>
+
+    </header>
+
+
+    <div class="layout">
+
+        <!-- SIDEBAR -->
+
+        <aside id="sidebar" class="sidebar">
+
+            <button class="nav-btn active" onclick="showPage('dashboard', this)">
+                🏠 Dashboard
+            </button>
+
+            <button class="nav-btn" onclick="showPage('customers', this)">
+                👥 Customers
+            </button>
+
+            <button class="nav-btn" onclick="showPage('jobs', this)">
+                📋 Jobs
+            </button>
+
+            <button class="nav-btn" onclick="showPage('payments', this)">
+                💰 Payments
+            </button>
+
+            <button class="nav-btn" onclick="showPage('reports', this)">
+                📊 Reports
+            </button>
+
+            <button class="nav-btn" onclick="showPage('settings', this)">
+                ⚙️ Settings
+            </button>
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+
+        <main class="main">
+
+
+            <!-- DASHBOARD -->
+
+            <section id="dashboardPage" class="page">
+
+                <div class="page-title">
+                    <h2>Dashboard</h2>
+                    <p>Welcome to Ibzar Publishing Company Management System.</p>
+                </div>
+
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+                        <div class="label">Customers</div>
+                        <div id="customerCount" class="number">0</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="label">Jobs</div>
+                        <div id="jobCount" class="number">0</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="label">Payments</div>
+                        <div id="paymentCount" class="number">0</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="label">Revenue</div>
+                        <div id="revenueCount" class="number">₦0</div>
+                    </div>
+
+                </div>
+
+
+                <div class="content-card">
+
+                    <div class="card-header">
+                        <h3>Recent Jobs</h3>
+
+                        <button class="action-btn"
+                                onclick="showPageByName('jobs')">
+                            View Jobs
+                        </button>
+                    </div>
+
+                    <div id="recentJobs"></div>
+
+                </div>
+
+            </section>
+
+
+            <!-- CUSTOMERS -->
+
+            <section id="customersPage" class="page hidden">
+
+                <div class="page-title">
+                    <h2>Customers</h2>
+                    <p>Manage your publishing customers.</p>
+                </div>
+
+                <div class="content-card">
+
+                    <div class="card-header">
+
+                        <h3>Customer List</h3>
+
+                        <button class="action-btn"
+                                onclick="openModal('customerModal')">
+                            + Add Customer
+                        </button>
+
+                    </div>
+
+                    <div class="table-wrap">
+
+                        <table>
+
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Phone</th>
+                                    <th>Email</th>
+                                    <th>Company</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="customersTable"></tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- JOBS -->
+
+            <section id="jobsPage" class="page hidden">
+
+                <div class="page-title">
+                    <h2>Jobs</h2>
+                    <p>Create and track publishing jobs.</p>
+                </div>
+
+                <div class="content-card">
+
+                    <div class="card-header">
+
+                        <h3>Job List</h3>
+
+                        <button class="action-btn"
+                                onclick="openModal('jobModal')">
+                            + Add Job
+                        </button>
+
+                    </div>
+
+                    <div class="table-wrap">
+
+                        <table>
+
+                            <thead>
+                                <tr>
+                                    <th>Job Number</th>
+                                    <th>Customer</th>
+                                    <th>Service</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="jobsTable"></tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- PAYMENTS -->
+
+            <section id="paymentsPage" class="page hidden">
+
+                <div class="page-title">
+                    <h2>Payments</h2>
+                    <p>Record and monitor customer payments.</p>
+                </div>
+
+                <div class="content-card">
+
+                    <div class="card-header">
+
+                        <h3>Payment List</h3>
+
+                        <button class="action-btn"
+                                onclick="openModal('paymentModal')">
+                            + Add Payment
+                        </button>
+
+                    </div>
+
+                    <div class="table-wrap">
+
+                        <table>
+
+                            <thead>
+                                <tr>
+                                    <th>Job</th>
+                                    <th>Customer</th>
+                                    <th>Amount</th>
+                                    <th>Method</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="paymentsTable"></tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- REPORTS -->
+
+            <section id="reportsPage" class="page hidden">
+
+                <div class="page-title">
+                    <h2>Reports</h2>
+                    <p>View financial and operational summaries.</p>
+                </div>
+
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+                        <div class="label">Total Customers</div>
+                        <div id="reportCustomers" class="number">0</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="label">Total Jobs</div>
+                        <div id="reportJobs" class="number">0</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="label">Completed Jobs</div>
+                        <div id="reportCompleted" class="number">0</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="label">Total Revenue</div>
+                        <div id="reportRevenue" class="number">₦0</div>
+                    </div>
+
+                </div>
+
+                <div class="content-card">
+
+                    <h3>Business Summary</h3>
+
+                    <p style="margin-top:15px;">
+                        This report section will later be connected
+                        directly to your Supabase reporting views.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- SETTINGS -->
+
+            <section id="settingsPage" class="page hidden">
+
+                <div class="page-title">
+                    <h2>Settings</h2>
+                    <p>System information and administration.</p>
+                </div>
+
+                <div class="content-card">
+
+                    <h3>Ibzar Publishing Company Management System</h3>
+
+                    <p style="margin-top:12px;">
+                        Version 1.0
+                    </p>
+
+                    <p style="margin-top:12px;color:#6b7280;">
+                        Supabase database connection will be
+                        configured in the next stage.
+                    </p>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+</section>
+
+
+<!-- CUSTOMER MODAL -->
+
+<div id="customerModal" class="modal hidden">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+            <h3>Add Customer</h3>
+
+            <button class="close-btn"
+                    onclick="closeModal('customerModal')">
+                ✕
+            </button>
+        </div>
+
+        <div class="form-group">
+            <label>Customer Name</label>
+            <input id="customerName" type="text">
+        </div>
+
+        <div class="form-group">
+            <label>Phone</label>
+            <input id="customerPhone" type="text">
+        </div>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input id="customerEmail" type="email">
+        </div>
+
+        <div class="form-group">
+            <label>Company</label>
+            <input id="customerCompany" type="text">
+        </div>
+
+        <div class="form-actions">
+
+            <button class="action-btn"
+                    onclick="saveCustomer()">
+                Save Customer
+            </button>
+
+            <button class="logout-btn"
+                    onclick="closeModal('customerModal')">
+                Cancel
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- JOB MODAL -->
+
+<div id="jobModal" class="modal hidden">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+            <h3>Add Job</h3>
+
+            <button class="close-btn"
+                    onclick="closeModal('jobModal')">
+                ✕
+            </button>
+        </div>
+
+        <div class="form-group">
+            <label>Customer</label>
+            <select id="jobCustomer"></select>
+        </div>
+
+        <div class="form-group">
+            <label>Service</label>
+            <input id="jobService"
+                   type="text"
+                   placeholder="e.g. Book Printing">
+        </div>
+
+        <div class="form-group">
+            <label>Description</label>
+            <textarea id="jobDescription"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Total Amount (₦)</label>
+            <input id="jobAmount" type="number">
+        </div>
+
+        <div class="form-group">
+            <label>Status</label>
+
+            <select id="jobStatus">
+
+                <option value="Pending">
+                    Pending
+                </option>
+
+                <option value="In Progress">
+                    In Progress
+                </option>
+
+                <option value="Completed">
+                    Completed
+                </option>
+
+                <option value="Cancelled">
+                    Cancelled
+                </option>
+
+            </select>
+
+        </div>
+
+        <div class="form-actions">
+
+            <button class="action-btn"
+                    onclick="saveJob()">
+                Save Job
+            </button>
+
+            <button class="logout-btn"
+                    onclick="closeModal('jobModal')">
+                Cancel
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- PAYMENT MODAL -->
+
+<div id="paymentModal" class="modal hidden">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <h3>Add Payment</h3>
+
+            <button class="close-btn"
+                    onclick="closeModal('paymentModal')">
+                ✕
+            </button>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Job</label>
+
+            <select id="paymentJob"></select>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Amount (₦)</label>
+
+            <input id="paymentAmount"
+                   type="number">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Payment Method</label>
+
+            <select id="paymentMethod">
+
+                <option>Cash</option>
+                <option>Bank Transfer</option>
+                <option>Card</option>
+                <option>POS</option>
+
+            </select>
+
+        </div>
+
+        <div class="form-actions">
+
+            <button class="action-btn"
+                    onclick="savePayment()">
+                Save Payment
+            </button>
+
+            <button class="logout-btn"
+                    onclick="closeModal('paymentModal')">
+                Cancel
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* DATA */
+
+let customers =
+    JSON.parse(localStorage.getItem("ibzar_customers")) || [];
+
+let jobs =
+    JSON.parse(localStorage.getItem("ibzar_jobs")) || [];
+
+let payments =
+    JSON.parse(localStorage.getItem("ibzar_payments")) || [];
+
+
+/* LOGIN */
+
+function login() {
+
+    const username =
+        document.getElementById("username").value.trim();
+
+    const password =
+        document.getElementById("password").value.trim();
+
+    if (username === "admin" && password === "1234") {
+
+        document.getElementById("loginPage")
+            .classList.add("hidden");
+
+        document.getElementById("app")
+            .classList.remove("hidden");
+
+        refreshAll();
+
+    } else {
+
+        alert("Incorrect username or password.\n\nDemo login:\nUsername: admin\nPassword: 1234");
+
+    }
+
+}
+
+
+/* LOGOUT */
+
+function logout() {
+
+    document.getElementById("app")
+        .classList.add("hidden");
+
+    document.getElementById("loginPage")
+        .classList.remove("hidden");
+
+}
+
+
+/* SIDEBAR */
+
+function toggleSidebar() {
+
+    document.getElementById("sidebar")
+        .classList.toggle("open");
+
+}
+
+
+/* PAGE NAVIGATION */
+
+function showPage(page, button) {
+
+    document.querySelectorAll(".page")
+        .forEach(p => p.classList.add("hidden"));
+
+    document.getElementById(page + "Page")
+        .classList.remove("hidden");
+
+    document.querySelectorAll(".nav-btn")
+        .forEach(b => b.classList.remove("active"));
+
+    if (button) {
+        button.classList.add("active");
+    }
+
+    document.getElementById("sidebar")
+        .classList.remove("open");
+
+    refreshAll();
+
+}
+
+
+function showPageByName(page) {
+
+    const buttons =
+        document.querySelectorAll(".nav-btn");
+
+    let targetButton = null;
+
+    buttons.forEach(button => {
+
+        if (button.innerText
+            .toLowerCase()
+            .includes(page)) {
+
+            targetButton = button;
+
+        }
+
+    });
+
+    showPage(page, targetButton);
+
+}
+
+
+/* MODALS */
+
+function openModal(id) {
+
+    if (id === "jobModal") {
+        loadCustomerOptions();
+    }
+
+    if (id === "paymentModal") {
+        loadJobOptions();
+    }
+
+    document.getElementById(id)
+        .classList.remove("hidden");
+
+}
+
+
+function closeModal(id) {
+
+    document.getElementById(id)
+        .classList.add("hidden");
+
+}
+
+
+/* CUSTOMERS */
+
+function saveCustomer() {
+
+    const name =
+        document.getElementById("customerName").value.trim();
+
+    const phone =
+        document.getElementById("customerPhone").value.trim();
+
+    const email =
+        document.getElementById("customerEmail").value.trim();
+
+    const company =
+        document.getElementById("customerCompany").value.trim();
+
+    if (!name) {
+
+        alert("Please enter the customer name.");
+
+        return;
+
+    }
+
+    customers.push({
+
+        id: Date.now(),
+
+        name: name,
+
+        phone: phone,
+
+        email: email,
+
+        company: company
+
+    });
+
+    localStorage.setItem(
+        "ibzar_customers",
+        JSON.stringify(customers)
+    );
+
+    document.getElementById("customerName").value = "";
+    document.getElementById("customerPhone").value = "";
+    document.getElementById("customerEmail").value = "";
+    document.getElementById("customerCompany").value = "";
+
+    closeModal("customerModal");
+
+    refreshAll();
+
+}
+
+
+/* CUSTOMER TABLE */
+
+function renderCustomers() {
+
+    const table =
+        document.getElementById("customersTable");
+
+    if (customers.length === 0) {
+
+        table.innerHTML =
+            '<tr><td colspan="4" class="empty">No customers yet.</td></tr>';
+
+        return;
+
+    }
+
+    table.innerHTML = customers.map(customer => `
+
+        <tr>
+
+            <td>${escapeHTML(customer.name)}</td>
+
+            <td>${escapeHTML(customer.phone)}</td>
+
+            <td>${escapeHTML(customer.email)}</td>
+
+            <td>${escapeHTML(customer.company)}</td>
+
+        </tr>
+
+    `).join("");
+
+}
+
+
+/* CUSTOMER OPTIONS */
+
+function loadCustomerOptions() {
+
+    const select =
+        document.getElementById("jobCustomer");
+
+    if (customers.length === 0) {
+
+        select.innerHTML =
+            '<option value="">Add a customer first</option>';
+
+        return;
+
+    }
+
+    select.innerHTML = customers.map(customer => `
+
+        <option value="${customer.id}">
+            ${escapeHTML(customer.name)}
+        </option>
+
+    `).join("");
+
+}
+
+
+/* JOBS */
+
+function saveJob() {
+
+    const customerId =
+        document.getElementById("jobCustomer").value;
+
+    const service =
+        document.getElementById("jobService").value.trim();
+
+    const description =
+        document.getElementById("jobDescription").value.trim();
+
+    const amount =
+        Number(document.getElementById("jobAmount").value);
+
+    const status =
+        document.getElementById("jobStatus").value;
+
+    if (!customerId) {
+
+        alert("Please select a customer.");
+
+        return;
+
+    }
+
+    if (!service) {
+
+        alert("Please enter the service.");
+
+        return;
+
+    }
+
+    const jobNumber =
+        "JOB-" +
+        String(jobs.length + 1).padStart(4, "0");
+
+    jobs.push({
+
+        id: Date.now(),
+
+        jobNumber: jobNumber,
+
+        customerId: Number(customerId),
+
+        service: service,
+
+        description: description,
+
+        amount: amount || 0,
+
+        status: status,
+
+        createdAt: new Date().toISOString()
+
+    });
+
+    localStorage.setItem(
+        "ibzar_jobs",
+        JSON.stringify(jobs)
+    );
+
+    document.getElementById("jobService").value = "";
+    document.getElementById("jobDescription").value = "";
+    document.getElementById("jobAmount").value = "";
+
+    closeModal("jobModal");
+
+    refreshAll();
+
+}
+
+
+/* JOB TABLE */
+
+function renderJobs() {
+
+    const table =
+        document.getElementById("jobsTable");
+
+    if (jobs.length === 0) {
+
+        table.innerHTML =
+            '<tr><td colspan="5" class="empty">No jobs yet.</td></tr>';
+
+        return;
+
+    }
+
+    table.innerHTML = jobs.map(job => {
+
+        const customer =
+            customers.find(c => c.id === job.customerId);
+
+        const customerName =
+            customer ? customer.name : "Unknown";
+
+        let badgeClass = "badge-yellow";
+
+        if (job.status === "Completed") {
+            badgeClass = "badge-green";
+        }
+
+        if (job.status === "Cancelled") {
+            badgeClass = "badge-red";
+        }
+
+        return `
+
+            <tr>
+
+                <td>${escapeHTML(job.jobNumber)}</td>
+
+                <td>${escapeHTML(customerName)}</td>
+
+                <td>${escapeHTML(job.service)}</td>
+
+                <td>₦${formatNumber(job.amount)}</td>
+
+                <td>
+                    <span class="badge ${badgeClass}">
+                        ${escapeHTML(job.status)}
+                    </span>
+                </td>
+
+            </tr>
+
+        `;
+
+    }).join("");
+
+}
+
+
+/* JOB OPTIONS FOR PAYMENTS */
+
+function loadJobOptions() {
+
+    const select =
+        document.getElementById("paymentJob");
+
+    if (jobs.length === 0) {
+
+        select.innerHTML =
+            '<option value="">Add a job first</option>';
+
+        return;
+
+    }
+
+    select.innerHTML = jobs.map(job => `
+
+        <option value="${job.id}">
+            ${escapeHTML(job.jobNumber)}
+        </option>
+
+    `).join("");
+
+}
+
+
+/* PAYMENTS */
+
+function savePayment() {
+
+    const jobId =
+        document.getElementById("paymentJob").value;
+
+    const amount =
+        Number(document.getElementById("paymentAmount").value);
+
+    const method =
+        document.getElementById("paymentMethod").value;
+
+    if (!jobId) {
+
+        alert("Please select a job.");
+
+        return;
+
+    }
+
+    if (!amount || amount <= 0) {
+
+        alert("Please enter a valid payment amount.");
+
+        return;
+
+    }
+
+    payments.push({
+
+        id: Date.now(),
+
+        jobId: Number(jobId),
+
+        amount: amount,
+
+        method: method,
+
+        date: new Date().toISOString()
+
+    });
+
+    localStorage.setItem(
+        "ibzar_payments",
+        JSON.stringify(payments)
+    );
+
+    document.getElementById("paymentAmount").value = "";
+
+    closeModal("paymentModal");
+
+    refreshAll();
+
+}
+
+
+/* PAYMENT TABLE */
+
+function renderPayments() {
+
+    const table =
+        document.getElementById("paymentsTable");
+
+    if (payments.length === 0) {
+
+        table.innerHTML =
+            '<tr><td colspan="5" class="empty">No payments yet.</td></tr>';
+
+        return;
+
+    }
+
+    table.innerHTML = payments.map(payment => {
+
+        const job =
+            jobs.find(j => j.id === payment.jobId);
+
+        const customer =
+            job
+            ? customers.find(c => c.id === job.customerId)
+            : null;
+
+        return `
+
+            <tr>
+
+                <td>
+                    ${job
+                        ? escapeHTML(job.jobNumber)
+                        : "Unknown"}
+                </td>
+
+                <td>
+                    ${customer
+                        ? escapeHTML(customer.name)
+                        : "Unknown"}
+                </td>
+
+                <td>
+                    ₦${formatNumber(payment.amount)}
+                </td>
+
+                <td>
+                    ${escapeHTML(payment.method)}
+                </td>
+
+                <td>
+                    ${new Date(payment.date)
+                        .toLocaleDateString()}
+                </td>
+
+            </tr>
+
+        `;
+
+    }).join("");
+
+}
+
+
+/* DASHBOARD */
+
+function updateDashboard() {
+
+    const revenue =
+        payments.reduce(
+            (total, payment) =>
+                total + Number(payment.amount),
+            0
+        );
+
+    document.getElementById("customerCount")
+        .innerText = customers.length;
+
+    document.getElementById("jobCount")
+        .innerText = jobs.length;
+
+    document.getElementById("paymentCount")
+        .innerText = payments.length;
+
+    document.getElementById("revenueCount")
+        .innerText = "₦" + formatNumber(revenue);
+
+
+    const recent =
+        document.getElementById("recentJobs");
+
+    if (jobs.length === 0) {
+
+        recent.innerHTML =
+            '<div class="empty">No jobs have been created yet.</div>';
+
+        return;
+
+    }
+
+    const latest =
+        [...jobs].reverse().slice(0, 5);
+
+    recent.innerHTML = `
+
+        <div class="table-wrap">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Job</th>
+                        <th>Customer</th>
+                        <th>Service</th>
+                        <th>Status</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    ${latest.map(job => {
+
+                        const customer =
+                            customers.find(
+                                c => c.id === job.customerId
+                            );
+
+                        return `
+
+                            <tr>
+
+                                <td>
+                                    ${escapeHTML(job.jobNumber)}
+                                </td>
+
+                                <td>
+                                    ${customer
+                                        ? escapeHTML(customer.name)
+                                        : "Unknown"}
+                                </td>
+
+                                <td>
+                                    ${escapeHTML(job.service)}
+                                </td>
+
+                                <td>
+                                    ${escapeHTML(job.status)}
+                                </td>
+
+                            </tr>
+
+                        `;
+
+                    }).join("")}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    `;
+
+}
+
+
+/* REPORTS */
+
+function updateReports() {
+
+    const revenue =
+        payments.reduce(
+            (total, payment) =>
+                total + Number(payment.amount),
+            0
+        );
+
+    const completed =
+        jobs.filter(
+            job => job.status === "Completed"
+        ).length;
+
+    document.getElementById("reportCustomers")
+        .innerText = customers.length;
+
+    document.getElementById("reportJobs")
+        .innerText = jobs.length;
+
+    document.getElementById("reportCompleted")
+        .innerText = completed;
+
+    document.getElementById("reportRevenue")
+        .innerText = "₦" + formatNumber(revenue);
+
+}
+
+
+/* REFRESH */
+
+function refreshAll() {
+
+    renderCustomers();
+
+    renderJobs();
+
+    renderPayments();
+
+    updateDashboard();
+
+    updateReports();
+
+}
+
+
+/* HELPERS */
+
+function formatNumber(number) {
+
+    return Number(number || 0)
+        .toLocaleString("en-NG");
+
+}
+
+
+function escapeHTML(value) {
+
+    return String(value || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+/* START */
+
+refreshAll();
+
+</script>
 
 </body>
 </html>
